@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Lumora Books — discover stories, explore books and build your personal library.">
+  <meta name="theme-color" content="#171514">
+  <title>Lumora Books — Discover Your Next Chapter</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="#home" aria-label="Lumora Books home">
+      <span class="brand-icon">L</span><span>lumora<span class="orange"> books.</span></span>
+    </a>
+    <nav class="desktop-nav">
+      <a href="#home">Home</a><a href="#discover">Discover</a><a href="#my-library">My Library</a>
+    </nav>
+    <span id="auth-status" class="auth-status">My Library</span>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="hero-copy">
+        <p class="eyebrow">WELCOME TO LUMORA BOOKS</p>
+        <h1>Every book<br>opens a <span>new world.</span></h1>
+        <p class="hero-text">Find stories that inspire you. Explore new books, discover new authors and save your favourites in one personal library.</p>
+        <a class="button button-orange" href="#discover">Explore books <span>→</span></a>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+        <div class="floating-book book-a"><span>THE</span><strong>LAST<br>STAR</strong><small>A NOVEL</small></div>
+        <div class="floating-book book-b"><span>AN OPEN</span><strong>WORLD</strong><small>OF STORIES</small></div>
+        <div class="floating-book book-c"><span>FIND YOUR</span><strong>STORY</strong><small>START HERE</small></div>
+        <span class="star star-one">✦</span><span class="star star-two">✧</span>
+      </div>
+    </section>
+
+    <section class="section" id="discover">
+      <div class="section-heading">
+        <div><p class="eyebrow">A LITTLE MAGIC ON EVERY PAGE</p><h2>Find your next read</h2></div>
+      </div>
+      <form id="search-form" class="search-form">
+        <span class="search-symbol">⌕</span>
+        <input id="search-input" type="search" placeholder="Search by book title or author..." aria-label="Search by book title or author">
+        <button class="button button-orange" type="submit">Search</button>
+      </form>
+      <div class="category-row" aria-label="Popular categories">
+        <button class="category-chip active" data-category="">For You</button>
+        <button class="category-chip" data-category="romance">Romance</button>
+        <button class="category-chip" data-category="fantasy">Fantasy</button>
+        <button class="category-chip" data-category="mystery">Mystery</button>
+        <button class="category-chip" data-category="science">Science</button>
+        <button class="category-chip" data-category="history">History</button>
+      </div>
+      <div class="filter-row">
+        <label>Book API source
+          <select id="api-source"><option value="openlibrary">Open Library (Unique)</option><option value="googlebooks">Google Books (Shared)</option><option value="gutendex">Gutendex (Shared)</option></select>
+        </label>
+        <label>Category
+          <select id="category-filter">
+            <option value="">All categories</option><option value="romance">Romance</option>
+            <option value="fantasy">Fantasy</option><option value="mystery">Mystery</option>
+            <option value="science">Science</option><option value="history">History</option>
+            <option value="fiction">Fiction</option><option value="biography">Biography</option>
+          </select>
+        </label>
+        <label>Publication year
+          <input id="year-filter" type="number" min="1" max="2100" placeholder="e.g. 2020">
+        </label>
+        <label>Sort by
+          <select id="sort-filter">
+            <option value="relevance">Relevance</option><option value="title">Title A–Z</option>
+            <option value="year-desc">Newest first</option><option value="year-asc">Oldest first</option>
+          </select>
+        </label>
+        <button id="clear-filters" class="button button-outline" type="button">Clear filters</button>
+      </div>
+
+      <div class="results-heading">
+        <div><p class="eyebrow">DISCOVER YOUR NEXT FAVOURITE</p><h2 id="results-title">Popular reads</h2></div>
+        <span id="result-count" class="muted"></span>
+      </div>
+      <div id="loading" class="state-box"><span class="spinner"></span><p>Finding your next read...</p></div>
+      <div id="error-message" class="state-box error-box" hidden></div>
+      <div id="empty-message" class="state-box" hidden>No books found. Try a different title or filter.</div>
+      <div id="book-grid" class="book-grid"></div>
+      <div class="pagination">
+        <button id="prev-btn" class="button button-outline" disabled>← Previous</button>
+        <span id="page-info">Page 1</span>
+        <button id="next-btn" class="button button-outline">Next →</button>
+      </div>
+    </section>
+
+    <section class="section library-section" id="my-library">
+      <div class="section-heading">
+        <div><p class="eyebrow">YOUR PERSONAL COLLECTION</p><h2>My Library <span class="orange">♥</span></h2>
+        <p class="muted">Save the books you love and keep them close.</p></div>
+      </div>
+      <div id="library-status" class="state-box">Connecting to your library...</div>
+      <div id="library-grid" class="book-grid"></div>
+    </section>
+  </main>
+
+  <footer><a class="brand" href="#home"><span class="brand-icon">L</span><span>lumora<span class="orange"> books.</span></span></a><p>Book data powered by Open Library, Google Books and Gutendex APIs.</p></footer>
+
+  <dialog id="book-dialog">
+    <button id="close-dialog" class="dialog-close" aria-label="Close details">×</button>
+    <div id="book-details"></div>
+  </dialog>
+  <div class="mobile-nav">
+    <a class="selected" href="#home"><span>⌂</span>Home</a>
+    <a href="#discover"><span>⌕</span>Search</a>
+    <a href="#my-library"><span>♡</span>My Library</a>
+  </div>
+  <script type="module" src="app.js"></script>
+</body>
+</html>
